@@ -13,7 +13,7 @@ const Header = () => {
     <header className='bg-transparent px-20 w-full py-6 text-white fixed z-[999]'>
       <nav className='flex items-center justify-between'>
         <div>
-          <h1 className='text-3xl text-gray-200 font-semibold'>ContentForge.AI</h1>
+          <Link href="/" className='text-3xl text-gray-200 font-semibold'>ContentForge.AI</Link>
         </div>
         <div>
           <ul className='flex gap-5'>

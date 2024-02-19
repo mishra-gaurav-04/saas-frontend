@@ -11,7 +11,7 @@ const poppins = Poppins({
 })
 
 export const metadata: Metadata = {
-  title: 'EventsNova',
+  title: 'ContentForgeAI',
   description: 'Event management platform',
 }
 

@@ -12,8 +12,8 @@ const page = () => {
             <h1 className='font-bold text-[4vw]'>Always Be There</h1>
             <p className='w-3/4 text-2xl font-light'>Private models trained on personlized data of the business.Unique model to each individual.</p>
             <div className='flex gap-3'>
-            <Button size='lg' className='rounded-full hover:bg-zinc-400 bg-transparent px-20 py-4 border-2'>Btn-1</Button>
-            <Button size='lg' className='bg-[#6566FF] hover:bg-[#4c4cd7] px-20 py-4 border-2 rounded-full'>Btn-1</Button>
+            <Button size='lg' className='rounded-full text-lg  hover:bg-zinc-400 bg-transparent px-20 py-4 border-2'>AI for Individual</Button>
+            <Button size='lg' className='bg-[#6566FF]  text-lg hover:bg-[#4c4cd7] px-20 py-4 border-2 rounded-full'>AI for Business</Button>
           </div>
           </div>
         </section>
