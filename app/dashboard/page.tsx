@@ -5,11 +5,11 @@ import Hero from "@/components/Hero";
 const page = () => {
   return (
     <>
-    <div className="flex">
-      <Sidebar />
-      <Profile />
-      <Hero />
-    </div>
+      <div className="flex">
+        <Sidebar />
+        <Profile />
+        <Hero />
+      </div>
     </>
   );
 };
