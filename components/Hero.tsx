@@ -29,7 +29,7 @@ const Hero = () => {
           {[...Array(6)].map((_, index) => (
             <div
               key={index}
-              className="flex flex-col items-center border rounded-xl bg-white shadow-md pb-0 overflow-hidden"
+              className="flex flex-col items-center border rounded-xl bg-white shadow-lg overflow-hidden hover:shadow-2xl hover:-translate-y-2 delay-150 duration-200 mb-4"
             >
               <div className="bg-gray-100 w-full max-h-[65%] flex justify-center rounded-t-xl">
                 <Image
