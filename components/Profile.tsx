@@ -7,9 +7,7 @@ const Profile = () => {
     <>
       <div className="top-0 h-screen w-[25%] bg-white p-4">
         <form className="flex items-center max-w-sm mx-auto mb-4">
-          <label className="sr-only">
-            Search
-          </label>
+          <label className="sr-only">Search</label>
           <div className="relative w-full">
             <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
               <FaSearch />
@@ -46,22 +44,22 @@ const Profile = () => {
         </div>
         <div className="mt-4 space-y-3">
           <p className="text-xl font-semibold text-black mb-2">My Posts</p>
-          <div className="bg-gray-300 p-2 rounded-lg cursor-pointer">
-            <p className="text-black text-lg">Post 1</p>
+          <div className="bg-[#6656FF] hover:bg-[#493dbc] p-2 rounded-lg cursor-pointer">
+            <p className="text-white font-semibold text-lg">Post 1</p>
             <p className="text-gray-100">
               Lorem ipsum dolor, sit amet consectetur adipisicing elit.
               Obcaecati, fugit?
             </p>
           </div>
-          <div className="bg-gray-300 p-2 rounded-lg cursor-pointer">
-            <p className="text-black text-lg">Post 1</p>
+          <div className="bg-[#6656FF] hover:bg-[#493dbc] p-2 rounded-lg cursor-pointer">
+            <p className="text-white font-semibold text-lg">Post 1</p>
             <p className="text-gray-100">
               Lorem ipsum dolor, sit amet consectetur adipisicing elit.
               Obcaecati, fugit?
             </p>
           </div>
-          <div className="bg-gray-300 p-2 rounded-lg cursor-pointer">
-            <p className="text-black text-lg">Post 1</p>
+          <div className="bg-[#6656FF] hover:bg-[#493dbc] p-2 rounded-lg cursor-pointer">
+            <p className="text-white font-semibold text-lg">Post 1</p>
             <p className="text-gray-100">
               Lorem ipsum dolor, sit amet consectetur adipisicing elit.
               Obcaecati, fugit?
