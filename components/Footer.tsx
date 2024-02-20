@@ -3,8 +3,8 @@ import { FaTwitter,FaInstagram,FaLinkedin } from "react-icons/fa6";
 
 const Footer = () => {
   return (
-    <footer className='bg-[#6656FF] w-full h-screen'>
-        <div className='container mx-auto items-center justify-between flex gap-3'>
+    <footer className='bg-[#6656FF] py-8 w-full h-screen'>
+        <div className='container mx-auto items-center justify-between py-5 flex gap-3'>
             <div className='mt-20 text-white w-1/3'>
                 <h1 className='text-4xl font-semibold'>ContentForge.AI</h1>
                 <div className='flex gap-4 mt-2'>
