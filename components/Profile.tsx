@@ -5,7 +5,7 @@ import Image from "next/image";
 const Profile = () => {
   return (
     <>
-      <div className="top-0 h-screen w-[25%] bg-white p-4 border-r-2">
+      <div className="top-0 h-screen w-full bg-white p-4 border-r-2">
         <form className="flex items-center max-w-sm mx-auto mb-4">
           <label className="sr-only">Search</label>
           <div className="relative w-full">

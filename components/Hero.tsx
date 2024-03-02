@@ -1,24 +1,48 @@
+"use client";
 import React from "react";
 import Image from "next/image";
-const Hero = () => {
+import { useState,useEffect } from "react";
+import { HiOutlineMenu } from "react-icons/hi";
+
+const Hero = ({ toggle, setToggle }: any) => {
+  // console.log(window.innerWidth);
+  const [windowWidth, setWindowWidth] = useState(0);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+    // Set initial window width
+    setWindowWidth(window.innerWidth);
+    // Event listener for window resize
+    window.addEventListener("resize", handleResize);
+    // Cleanup
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
   return (
     <>
-      <div className="h-screen w-2/3 bg-gray-100">
+      <div className="h-screen w-full md:w-2/3 bg-gray-100">
         <div className="flex justify-between items-center w-full bg-white h-[52px]">
-          <div className="ml-4 flex gap-2">
+          <div className="ml-4 flex gap-2 items-center">
+            <HiOutlineMenu
+              className="text-2xl md:hidden block"
+              onClick={() => {
+                setToggle(!toggle);
+              }}
+            />
             <Image
               src="/assets/logo.svg"
               alt=""
               width={30}
               height={30}
-              className="rounded-full"
+              className="hidden md:block rounded-full"
             />
             <div>
               <p className="text-md">Test User</p>
               <p className="text-sm text-gray-500">TestUseremail.com</p>
             </div>
           </div>
-          <button className="mr-2 border text-sm border-[#6656FF] py-2 px-4 rounded-3xl hover:bg-[#6656FF] hover:text-white">
+          <button className="hidden md:block mr-2 border text-sm border-[#6656FF] py-2 px-4 rounded-3xl hover:bg-[#6656FF] hover:text-white">
             Invite Friends
           </button>
         </div>
@@ -27,7 +51,7 @@ const Hero = () => {
           <span className="text-slate-400">ples</span>
         </p>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 m-4">
-          {[...Array(6)].map((_, index) => (
+        {Array.from({ length: window.innerWidth < 768 ? 2 : 6 }, (_, index) => (
             <div
               key={index}
               className="flex flex-col items-center border rounded-xl bg-white shadow-lg overflow-hidden hover:shadow-2xl hover:-translate-y-2 delay-150 duration-200 mb-4"
@@ -42,7 +66,7 @@ const Hero = () => {
                 />
               </div>
               <div className="w-full p-2">
-                <h3 className="text-md font-bold text-gray-800">Post 1</h3>
+                <h3 className="text-md font-bold text-gray-800">Post {index + 1}</h3>
                 <div className="w-full">
                   <p className="text-sm mt-1 text-gray-500">
                     Lorem ipsum dolor sit amet consectetur adipisicing elit.
@@ -50,12 +74,8 @@ const Hero = () => {
                   </p>
                 </div>
                 <div className="flex justify-between w-full gap-2">
-                  <p className="text-sm mt-1 text-gray-500 justify-end">
-                    15th feb
-                  </p>
-                  <p className="text-sm mt-1 text-gray-500 justify-end">
-                    Gaurav
-                  </p>
+                  <p className="text-sm mt-1 text-gray-500 justify-end">15th feb</p>
+                  <p className="text-sm mt-1 text-gray-500 justify-end">Gaurav</p>
                 </div>
               </div>
             </div>
