@@ -27,7 +27,7 @@ const Header = () => {
           </ul>
         </div>
         <Button className='bg-green-400 px-16 w-full sm:w-fit border-2 rounded-full border-gray-500' size="lg" asChild>
-          <Link href="/">Login</Link>
+          <Link href="/auth/sign-in">Login</Link>
         </Button>
       </nav>
     </header>
