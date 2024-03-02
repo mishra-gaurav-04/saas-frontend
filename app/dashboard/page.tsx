@@ -2,9 +2,9 @@
 import React from "react";
 import Sidebar from "../../components/Sidebar";
 import Profile from "../../components/Profile";
-import Hero from "@/components/Hero";
+import Hero from "../../components/Hero";
 import { useState } from "react";
-
+ 
 const Page = () => {
   const [toggle, setToggle] = useState(false);
   return (

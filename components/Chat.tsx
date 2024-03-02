@@ -2,13 +2,20 @@ import React from "react";
 import Image from "next/image";
 import { IoAddCircleSharp } from "react-icons/io5";
 import { MdSend } from "react-icons/md";
+import { HiOutlineMenu } from "react-icons/hi";
 
-const Chat = () => {
-  return (
+const Chat = ({ toggle, setToggle }: any) => {
+  return ( 
     <>
-      <div className="h-screen w-2/3 bg-gray-100">
+      <div className="h-screen w-full md:w-2/3 bg-gray-100">
         <div className="flex justify-between items-center w-full bg-white h-[52px]">
-          <div className="ml-4 flex gap-2">
+          <div className="ml-4 flex gap-2 items-center">
+          <HiOutlineMenu
+              className="text-2xl md:hidden block"
+              onClick={() => {
+                setToggle(!toggle);
+              }}
+            />
             <Image
               src="/assets/logo.svg"
               alt=""
@@ -21,7 +28,7 @@ const Chat = () => {
               <p className="text-sm text-gray-500">TestUseremail.com</p>
             </div>
           </div>
-          <button className="mr-2 border text-sm border-[#6656FF] py-2 px-4 rounded-3xl hover:bg-[#6656FF] hover:text-white">
+          <button className="hidden md:block mr-2 border text-sm border-[#6656FF] py-2 px-4 rounded-3xl hover:bg-[#6656FF] hover:text-white">
             Invite Friends
           </button>
         </div>

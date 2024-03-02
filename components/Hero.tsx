@@ -44,14 +44,14 @@ const Hero = ({ toggle, setToggle }: any) => {
           </div>
           <button className="hidden md:block mr-2 border text-sm border-[#6656FF] py-2 px-4 rounded-3xl hover:bg-[#6656FF] hover:text-white">
             Invite Friends
-          </button>
+          </button> 
         </div>
         <p className="text-4xl ml-4 my-2 font-semibold text-gray-500">
           <span className="text-slate-500">Exam</span>
           <span className="text-slate-400">ples</span>
         </p>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 m-4">
-        {Array.from({ length: window.innerWidth < 768 ? 2 : 6 }, (_, index) => (
+        {Array.from({ length:windowWidth < 768 ? 2 : 6 }, (_, index) => (
             <div
               key={index}
               className="flex flex-col items-center border rounded-xl bg-white shadow-lg overflow-hidden hover:shadow-2xl hover:-translate-y-2 delay-150 duration-200 mb-4"
