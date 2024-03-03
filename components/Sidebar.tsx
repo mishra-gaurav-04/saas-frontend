@@ -1,11 +1,15 @@
+'use client'
 import React from "react";
 import Image from "next/image";
 import { FaHome } from "react-icons/fa";
 import { PiChats } from "react-icons/pi";
 import { TbBulb } from "react-icons/tb";
 import { IoIosLogOut } from "react-icons/io";
+import {signOut} from 'next-auth/react';
+
 
 const Sidebar = () => {
+ 
   return (
     <>
       <aside
@@ -59,16 +63,11 @@ const Sidebar = () => {
         </div>
         <div className="px-3 pb-4">
           <ul className="space-y-2 font-medium">
-            <li>
-              <a
-                href="#"
-                className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-[#493dbc] dark:hover:bg-gray-700 group"
-              >
+            <li className="hover:bg-[#786cec] flex items-center gap-2 py-1 rounded-lg ">
                 <IoIosLogOut className="text-2xl text-white" />
-                <span className="flex-1 ms-3 whitespace-nowrap text-white">
+                <button onClick={() => signOut({callbackUrl : "/"})} type="submit" className="flex-1 ms-3 whitespace-nowrap text-white">
                   LogOut
-                </span>
-              </a>
+                </button>
             </li>
           </ul>
         </div>
