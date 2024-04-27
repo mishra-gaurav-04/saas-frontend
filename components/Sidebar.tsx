@@ -72,18 +72,16 @@ const Sidebar = () => {
           </ul>
         </div>
         <div className="px-4 pb-4">
-          <ul className="space-y-2 font-medium">
-            <li className="hover:bg-[#786cec] flex items-center py-1 rounded-lg ">
-              <IoIosLogOut className="text-2xl text-white" />
-              <button
-                onClick={() => signOut({ callbackUrl: "/" })}
-                type="submit"
-                className="flex-1 ms-3 whitespace-nowrap text-white"
-              >
-                LogOut
-              </button>
-            </li>
-          </ul>
+          <li className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-[#493dbc] dark:hover:bg-gray-700">
+            <IoIosLogOut className="text-2xl text-white" />
+            <button
+              onClick={() => signOut({ callbackUrl: "/" })}
+              type="submit"
+              className="flex-1 ms-3 whitespace-nowrap text-white"
+            >
+              LogOut
+            </button>
+          </li>
         </div>
       </aside>
     </>
