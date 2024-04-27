@@ -2,7 +2,7 @@ import {connectToDatabase} from '@/lib/connect';
 import {handleError} from '@/lib/utils';
 import User from '@/lib/models/user.model';
 import { NextResponse } from 'next/server';
-import bcrypt from 'bcrypt'; 
+import bcrypt from 'bcryptjs'; 
 
 export  async function POST(req : any){
     try{

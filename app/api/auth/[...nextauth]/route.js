@@ -2,7 +2,7 @@ import CredentialsProvider from 'next-auth/providers/credentials'
 import NextAuth from 'next-auth/next';
 import {connectToDatabase} from '@/lib/connect';
 import User from '@/lib/models/user.model';
-import bcrypt from 'bcrypt';
+const bcrypt = require('bcryptjs');
 
 async function login(credentials){
     try{

@@ -13,6 +13,22 @@ const UserSchema = new Schema({
     password : {
         type : String,
         required : true
+    },
+    firstTime : {
+        type :Boolean,
+        default : true
+    },
+    prefrences:{
+        firstName : String,
+        lastName : String,
+        mobileNo : String,
+        company : String,
+        linkedIn : String,
+        mediumAccount : String,
+        twitter : String,
+        techStack : String,
+        entrepreneurialJourney : String,
+        productDescription : String
     }
 },{
     timestamps : true
