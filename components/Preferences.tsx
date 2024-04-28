@@ -5,8 +5,9 @@ import { useEffect, useState, useRef } from "react";
 import { useSession } from "next-auth/react";
 
 interface Answer {
-  [key: string]: string; 
+  [key: string]: string;
 }
+
 const Preferences = ({ toggle, setToggle }: any) => {
   const [questions, setQuestions] = useState([]);
   const [answers, setAnswers] = useState({});
@@ -23,12 +24,6 @@ const Preferences = ({ toggle, setToggle }: any) => {
           if (response.ok) {
             const data = await response.json();
             setQuestions(data);
-            // const initialAnswers = {};
-            // data.forEach((question: Question) => {
-            //   console.log(typeof(question._id.$oid));
-            //   // initialAnswers[question?._id?.$oid] = "";
-            // });
-            // setAnswers(initialAnswers);
           }
         } catch (error) {
           console.log(error);
@@ -52,31 +47,36 @@ const Preferences = ({ toggle, setToggle }: any) => {
 
   console.log("This is answers\n", answers);
 
-  // const handleSubmit = async () => {
-  //   // Construct an object containing question IDs and their corresponding answers
-  //   const answersToSend = {
-  //     userId: userId,
-  //     answers: Object.fromEntries(
-  //       Object.entries(answers).filter(([_, answer]) => answer.trim() !== "")
-  //     ),
-  //   };
-  //   // Send answersToSend to the desired route using an HTTP request (e.g., fetch or axios)
-  //   try {
-  //     const response = await fetch("http://127.0.0.1:5000/api//answer/<user_id>", {
-  //       method: "POST",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //       body: JSON.stringify(answersToSend),
-  //     });
-  //     if (response.ok) {
-  //       console.log("Answers submitted successfully!");
-  //     } else {
-  //       console.error("Failed to submit answers:", response.statusText);
-  //     }
-  //   } catch (error) {
-  //     console.error("Error submitting answers:", error.message);
-  //   }
+  // console.log("Prefrence\n", session?.user?.id);
+
+  const handleSubmit = async (e:any) => {
+    e.preventDefault()
+    try {
+      const response = await fetch(
+        `http://127.0.0.1:5000/api/answer/${session?.user?.id}`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(answers),
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error("Failed to submit answers");
+      } else {
+        console.log("Answers submitted successfully");
+      }
+    } catch (error) {
+      console.error("Error submitting answers:", error);
+      // Handle error, e.g., show an error message
+    }
+  };
+
+  // const handleLaunchClick = () => {
+  //   const userId = session?.user?.id; // Set the user ID here or fetch it from somewhere
+  //   // handleSubmit(userId);
   // };
 
   return (
@@ -99,7 +99,7 @@ const Preferences = ({ toggle, setToggle }: any) => {
             />
             <div>
               <p className="text-md">{session?.user?.name}</p>
-              <p className="text-sm text-gray-500">{session?.user?.name}</p>
+              <p className="text-sm text-gray-500">{session?.user?.email}</p>
             </div>
           </div>
           <button className="hidden md:block mr-2 border text-sm border-[#6656FF] py-2 px-4 rounded-3xl hover:bg-[#6656FF] hover:text-white">
@@ -107,7 +107,7 @@ const Preferences = ({ toggle, setToggle }: any) => {
           </button>
         </div>
         <div className="flex flex-col h-[90%] items-center justify-center w-full">
-          <form className="w-[80%] max-h-[90%] bg-white p-4 rounded-xl shadow-2xl border-2 overflow-scroll">
+          <form onSubmit={handleSubmit} className="w-[80%] max-h-[90%] bg-white p-4 rounded-xl shadow-2xl border-2 overflow-scroll">
             {questions.map((item: any) => (
               <div className="relative z-0 w-full mb-5 group">
                 <input
@@ -118,7 +118,7 @@ const Preferences = ({ toggle, setToggle }: any) => {
                   placeholder=" "
                   required
                   onChange={(e) => handleInputChange(e)}
-                /> 
+                />
                 <label className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
                   {item.title}
                 </label>
