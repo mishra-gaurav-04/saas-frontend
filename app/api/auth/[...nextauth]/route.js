@@ -6,7 +6,7 @@ const bcrypt = require('bcryptjs');
 
 async function login(credentials){
     try{
-        await connectToDatabase;
+        await connectToDatabase();
         const user = await User.findOne({email:credentials.email});
         if(!user){
             throw new Error("User not found")
@@ -50,6 +50,7 @@ export const authOptions = {
                 token.email = user.email,
                 token.id = user.id;
                 token.name = user.name
+                
             }
             console.log('This is token',token);
             return token;

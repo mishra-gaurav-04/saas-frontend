@@ -2,7 +2,7 @@
 import React from "react";
 import Sidebar from "../../components/Sidebar";
 import Profile from "../../components/Profile";
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import OnBoard from "@/components/OnBoard";
  
 const Page = () => {

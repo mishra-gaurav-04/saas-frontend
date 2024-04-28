@@ -4,7 +4,7 @@ export type createUserParams = {
     password : string
 }
 
-export type Prefrences = {
+export type Onboarding = {
     firstName : string,
     lastName : string,
     mobileNo : string,

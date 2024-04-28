@@ -18,7 +18,7 @@ const UserSchema = new Schema({
         type :Boolean,
         default : true
     },
-    prefrences:{
+    onboarding:{
         firstName : String,
         lastName : String,
         mobileNo : String,

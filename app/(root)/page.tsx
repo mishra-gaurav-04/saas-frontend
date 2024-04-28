@@ -2,7 +2,7 @@ import React from 'react';
 import { Button } from '@/components/ui/button';
 import Image from 'next/image';
 
-const page = () => {
+const Page = () => {
   return (
     <>
       <video src="https://assets-global.website-files.com/5ff65c460ce39f5ec5681c6a/6559085de7571c0eedbf25af_personal_ai_nyc_final_091023 (1080p)_record-transcode.mp4" className='w-full z-[-1] brightness-50 fixed h-full object-cover' loop autoPlay muted></video>
@@ -37,4 +37,4 @@ const page = () => {
   )
 }
 
-export default page
+export default Page
