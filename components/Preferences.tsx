@@ -3,8 +3,16 @@ import Image from "next/image";
 import { HiOutlineMenu } from "react-icons/hi";
 import { useEffect, useState, useRef } from "react";
 
+interface Question {
+  _id: {
+    $oid: number;
+  };
+  titile: string;
+}
+
 const Preferences = ({ toggle, setToggle }: any) => {
-  const [questions, setQuestions] = useState([]);
+  const [questions, setQuestions] = useState([] as Question[]);
+  const [answers, setAnswers] = useState({});
   const effect = useRef(false);
   useEffect(() => {
     if (effect.current == false) {
@@ -14,8 +22,14 @@ const Preferences = ({ toggle, setToggle }: any) => {
           const response = await fetch("http://127.0.0.1:5000/api/question");
 
           if (response.ok) {
-            const data = await response.json();
+            const data: Question[] = await response.json();
             setQuestions(data);
+            const initialAnswers = {};
+            data.forEach((question: Question) => {
+              console.log(question._id.$oid);
+              initialAnswers[question._id.$oid as any] = "";
+            });
+            setAnswers(initialAnswers);
           }
         } catch (error) {
           console.log(error);
@@ -28,7 +42,46 @@ const Preferences = ({ toggle, setToggle }: any) => {
       };
     }
   }, []);
-  console.log("Questions\n", questions);
+  // console.log("Questions\n", questions);
+
+  const handleInputChange = (
+    event: React.ChangeEvent<HTMLInputElement>,
+    questionId: string
+  ) => {
+    const { value } = event.target;
+    setAnswers((prevAnswers) => ({
+      ...prevAnswers,
+      [questionId]: value,
+    }));
+  };
+
+  // const handleSubmit = async () => {
+  //   // Construct an object containing question IDs and their corresponding answers
+  //   const answersToSend = {
+  //     userId: userId,
+  //     answers: Object.fromEntries(
+  //       Object.entries(answers).filter(([_, answer]) => answer.trim() !== "")
+  //     ),
+  //   };
+  //   // Send answersToSend to the desired route using an HTTP request (e.g., fetch or axios)
+  //   try {
+  //     const response = await fetch("http://127.0.0.1:5000/api//answer/<user_id>", {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       body: JSON.stringify(answersToSend),
+  //     });
+  //     if (response.ok) {
+  //       console.log("Answers submitted successfully!");
+  //     } else {
+  //       console.error("Failed to submit answers:", response.statusText);
+  //     }
+  //   } catch (error) {
+  //     console.error("Error submitting answers:", error.message);
+  //   }
+  // };
+
   return (
     <>
       <div className="flex flex-col h-screen w-full bg-gray-100">
@@ -62,11 +115,13 @@ const Preferences = ({ toggle, setToggle }: any) => {
               <div className="relative z-0 w-full mb-5 group">
                 <input
                   type="text"
-                  name="question 1"
-                  id="question 1"
+                  name={`question-${item._id.$oid}`}
+                  id={`question-${item._id.$oid}`}
                   className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                   placeholder=" "
                   required
+                  value={answers[item._id.$oid]}
+                  onChange={(e) => handleInputChange(e, item._id.$oid)}
                 />
                 <label className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
                   {item.title}
