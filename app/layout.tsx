@@ -1,6 +1,9 @@
 import type { Metadata } from 'next'
 import { Poppins } from 'next/font/google'
-import {SessionProvider} from 'next-auth/react';
+import Provider from '@/app/context/client-provider';
+import {getServerSession} from 'next-auth/next';
+import {authOptions} from '@/app/api/auth/[...nextauth]/route';
+
 
 
 import './globals.css'
@@ -16,14 +19,21 @@ export const metadata: Metadata = {
   description: 'Event management platform',
 }
 
-export default function RootLayout({
+
+
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
+  const session = await getServerSession(authOptions);
   return (
       <html lang="en">
-        <body className={poppins.variable}>{children}</body>
+        <body className={poppins.variable}>
+          <Provider session={session}>
+          {children}
+          </Provider>
+        </body>
       </html>
   )
 }
