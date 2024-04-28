@@ -3,8 +3,11 @@ import Image from "next/image";
 import { IoAddCircleSharp } from "react-icons/io5";
 import { MdSend } from "react-icons/md";
 import { HiOutlineMenu } from "react-icons/hi";
+import { useSession } from "next-auth/react";
 
 const Chat = ({ toggle, setToggle }: any) => {
+  const { data: session, status } = useSession();
+
   return (
     <>
       <div className="h-screen w-full md:w-2/3 bg-gray-100">
@@ -24,8 +27,8 @@ const Chat = ({ toggle, setToggle }: any) => {
               className="rounded-full"
             />
             <div>
-              <p className="text-md">Test User</p>
-              <p className="text-sm text-gray-500">TestUseremail.com</p>
+              <p className="text-md">{session?.user?.name}</p>
+              <p className="text-sm text-gray-500">{session?.user?.email}</p>
             </div>
           </div>
           <button className="hidden md:block mr-2 border text-sm border-[#6656FF] py-2 px-4 rounded-3xl hover:bg-[#6656FF] hover:text-white">

@@ -1,8 +1,10 @@
 import React from "react";
 import { FaSearch } from "react-icons/fa";
 import Image from "next/image";
+import {useSession} from 'next-auth/react';
 
 const Profile = () => {
+  const {data:session,status} = useSession();
   return (
     <>
       <div className="top-0 h-screen w-full bg-white p-4 border-r-2">
@@ -39,8 +41,8 @@ const Profile = () => {
             />
           </div>
 
-          <p className="text-2xl text-gray-600">Test User</p>
-          <p className="text-gray-400">Test User email id</p>
+          <p className="text-2xl text-gray-600">{session?.user?.name}</p>
+          <p className="text-gray-400">{session?.user?.email}</p>
         </div>
         <div className="mt-4 space-y-3">
           <p className="text-xl font-semibold text-black mb-2">My Posts</p>

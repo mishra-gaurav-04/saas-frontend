@@ -3,10 +3,12 @@ import React from "react";
 import Image from "next/image";
 import { useState,useEffect } from "react";
 import { HiOutlineMenu } from "react-icons/hi";
+import {useSession} from 'next-auth/react';
 
 const Hero = ({ toggle, setToggle }: any) => {
   // console.log(window.innerWidth);
   const [windowWidth, setWindowWidth] = useState(0);
+  const {data:session,status} = useSession();
 
   useEffect(() => {
     const handleResize = () => {
@@ -38,8 +40,8 @@ const Hero = ({ toggle, setToggle }: any) => {
               className="hidden md:block rounded-full"
             />
             <div>
-              <p className="text-md">Test User</p>
-              <p className="text-sm text-gray-500">TestUseremail.com</p>
+              <p className="text-md">{session?.user?.name}</p>
+              <p className="text-sm text-gray-500">{session?.user?.email}</p>
             </div>
           </div>
           <button className="hidden md:block mr-2 border text-sm border-[#6656FF] py-2 px-4 rounded-3xl hover:bg-[#6656FF] hover:text-white">
@@ -75,7 +77,7 @@ const Hero = ({ toggle, setToggle }: any) => {
                 </div>
                 <div className="flex justify-between w-full gap-2">
                   <p className="text-sm mt-1 text-gray-500 justify-end">15th feb</p>
-                  <p className="text-sm mt-1 text-gray-500 justify-end">Gaurav</p>
+                  <p className="text-sm mt-1 text-gray-500 justify-end">{session?.user?.name}</p>
                 </div>
               </div>
             </div>

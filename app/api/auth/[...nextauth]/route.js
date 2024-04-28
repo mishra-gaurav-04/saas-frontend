@@ -52,7 +52,7 @@ export const authOptions = {
                 token.name = user.name
                 
             }
-            console.log('This is token',token);
+            // console.log('This is token',token);
             return token;
         },
         async session({session,token}){
