@@ -1,8 +1,10 @@
 import React from "react";
 import Image from "next/image";
 import { HiOutlineMenu } from "react-icons/hi";
+import {useSession} from 'next-auth/react';
 
 const OnBoard = ({ toggle, setToggle }: any) => {
+  const {data:session,status} = useSession();
   return (
     <>
       <div className="flex flex-col h-screen w-full bg-gray-100">
@@ -22,7 +24,7 @@ const OnBoard = ({ toggle, setToggle }: any) => {
               className="rounded-full"
             />
             <div>
-              <p className="text-md">Test User</p>
+              <p className="text-md">{session?.user?.name}</p>
               <p className="text-sm text-gray-500">TestUseremail.com</p>
             </div>
           </div>

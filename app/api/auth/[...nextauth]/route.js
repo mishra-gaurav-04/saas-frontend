@@ -61,6 +61,7 @@ export const authOptions = {
                 session.user.email = token.email;
                 session.user.id = token.id;
             }
+            // console.log('This is session',session);
             return session;
         }
     }
