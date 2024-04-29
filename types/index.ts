@@ -5,6 +5,8 @@ export type createUserParams = {
 }
 
 export type Onboarding = {
+    userId : string,
+    onBoarding : {
     firstName : string,
     lastName : string,
     mobileNo : string,
@@ -15,4 +17,5 @@ export type Onboarding = {
     techStack : string,
     entrepreneurialJourney : string,
     productDescription : string
+    }
 }

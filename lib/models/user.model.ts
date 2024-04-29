@@ -18,17 +18,17 @@ const UserSchema = new Schema({
         type :Boolean,
         default : true
     },
-    onboarding:{
-        firstName : String,
-        lastName : String,
-        mobileNo : String,
-        company : String,
-        linkedIn : String,
-        mediumAccount : String,
-        twitter : String,
-        techStack : String,
-        entrepreneurialJourney : String,
-        productDescription : String
+    onboarding: {
+            firstName: String,
+            lastName: String,
+            mobileNo: String,
+            company: String,
+            linkedIn: String,
+            mediumAccount: String,
+            twitter: String,
+            techStack: String,
+            entrepreneurialJourney: String,
+            productDescription: String
     }
 },{
     timestamps : true

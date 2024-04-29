@@ -1,15 +1,22 @@
+'use server'
 import User from '@/lib/models/user.model';
 import {Onboarding} from '@/types';
 import {connectToDatabase} from '@/lib/connect';
 import {handleError} from '@/lib/utils';
 
-export const userOnboarding = async(onboarding : Onboarding) => {
-    try{
+export const userOnboarding = async ({ userId, onBoarding }: any) => {
+    try {
         await connectToDatabase();
-        const user = await User.findByIdAndUpdate({onboarding:onboarding,firstTime:false});
-
-    }
-    catch(error){
+        // console.log('Updating user:', userId, onboarding);
+        const user = await User.findOneAndUpdate(
+            { _id: userId },
+            { $set: { "onboarding": onBoarding, "firstTime": false } },
+            { new: true }
+        );
+        console.log('Updated user:', user);
+        return JSON.parse(JSON.stringify(user));    
+    } catch (error) {
+        console.error('Error during user onboarding:', error);
         handleError(error);
     }
 }
