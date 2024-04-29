@@ -1,12 +1,38 @@
+'use client'
 import React from "react";
 import Image from "next/image";
 import { IoAddCircleSharp } from "react-icons/io5";
 import { MdSend } from "react-icons/md";
 import { HiOutlineMenu } from "react-icons/hi";
 import { useSession } from "next-auth/react";
+import {useState} from 'react';
+import {postPrompt} from '@/lib/actions/user.action'
+import { preconnect } from "next/dist/server/app-render/entry-base";
 
 const Chat = ({ toggle, setToggle }: any) => {
   const { data: session, status } = useSession();
+  const [response,setResponse] = useState('');
+  const [prompt,setPrompt] = useState({});
+  const userId = session?.user?.id;
+
+  const handleInputChange = (e:any) => {
+    setPrompt((prev) => ({
+      ...prev,[e.target.name] : e.target.value
+  }))
+  }
+
+  const handleSubmit = async(e:any) => {
+    e.preventDefault();
+    try{
+      const res = await postPrompt({userId,prompt});
+      console.log(res);
+    }
+    catch(error){
+      console.log(error);
+    }
+  }
+
+  console.log('This is prompt\n',prompt);
 
   return (
     <>
@@ -112,7 +138,7 @@ const Chat = ({ toggle, setToggle }: any) => {
           </div>
         </div>
 
-        <form className="fixed bottom-0 w-[65%] m-4">
+        <form onSubmit={handleSubmit} className="fixed bottom-0 w-[65%] m-4">
           <label
             form="submit"
             className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white"
@@ -126,6 +152,8 @@ const Chat = ({ toggle, setToggle }: any) => {
             <input
               type="text"
               id="chat"
+              name="query"
+              onChange={(e) => handleInputChange(e)}
               className="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-3xl bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 outline-none"
               placeholder="Tell me what do you want"
               required
