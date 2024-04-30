@@ -1,38 +1,43 @@
-'use client'
+"use client";
 import React from "react";
 import Image from "next/image";
 import { IoAddCircleSharp } from "react-icons/io5";
 import { MdSend } from "react-icons/md";
 import { HiOutlineMenu } from "react-icons/hi";
 import { useSession } from "next-auth/react";
-import {useState} from 'react';
-import {postPrompt} from '@/lib/actions/user.action'
+import { useState } from "react";
+import { postPrompt } from "@/lib/actions/user.action";
 import { preconnect } from "next/dist/server/app-render/entry-base";
 
 const Chat = ({ toggle, setToggle }: any) => {
   const { data: session, status } = useSession();
-  const [response,setResponse] = useState('');
-  const [prompt,setPrompt] = useState({});
+  const [response, setResponse] = useState("");
+  const [query, setQuery] = useState("");
+  const [temp, setTemp] = useState("");
+  const [prompt, setPrompt] = useState({});
   const userId = session?.user?.id;
 
-  const handleInputChange = (e:any) => {
+  const handleInputChange = (e: any) => {
     setPrompt((prev) => ({
-      ...prev,[e.target.name] : e.target.value
-  }))
-  }
+      ...prev,
+      [e.target.name]: e.target.value,
+    }));
+    setTemp(e.target.value);
+  };
 
-  const handleSubmit = async(e:any) => {
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
-    try{
-      const res = await postPrompt({userId,prompt});
+    try {
+      const res = await postPrompt({ userId, prompt });
       console.log(res);
-    }
-    catch(error){
+      setResponse(res);
+      setQuery(temp);
+    } catch (error) {
       console.log(error);
     }
-  }
+  };
 
-  console.log('This is prompt\n',prompt);
+  // console.log("This is prompt\n", prompt);
 
   return (
     <>
@@ -62,75 +67,28 @@ const Chat = ({ toggle, setToggle }: any) => {
           </button>
         </div>
 
-        <div className="flex gap-2.5 p-3">
+        <div className="flex gap-2.5 p-3 ">
           {/* <img className="w-8 h-8 rounded-full" src="/docs/images/people/profile-picture-3.jpg" alt="Jese image"> */}
-          <div className="flex flex-col w-full leading-1.5 p-4 border-gray-200 bg-white rounded-e-xl rounded-es-xl dark:bg-gray-700 shadow-lg">
+          <div className="flex flex-col w-full leading-1.5 p-4 border-4 border-[#877af8] bg-white rounded-e-xl rounded-es-xl dark:bg-gray-700 shadow-xl">
             <div className="flex items-center space-x-2 rtl:space-x-reverse">
               <span className="text-sm font-semibold text-gray-900 dark:text-white">
-                Bonnie Green
-              </span>
-              <span className="text-sm font-normal text-gray-500 dark:text-gray-400">
-                11:46
+                {session?.user?.name}
               </span>
             </div>
             <p className="text-sm font-normal py-2.5 text-gray-900 dark:text-white">
-              That's awesome. I think our users will really appreciate the
-              improvements.
+              {query}
             </p>
             <span className="text-sm font-normal text-gray-500 dark:text-gray-400">
-              Received
+              Delivered
             </span>
-          </div>
-        </div>
-        <div className="flex gap-2.5 p-3">
-          {/* <img className="w-8 h-8 rounded-full" src="/docs/images/people/profile-picture-3.jpg" alt="Jese image"> */}
-          <div className="flex flex-col w-full leading-1.5 p-4 border-gray-200 bg-white rounded-e-xl rounded-es-xl dark:bg-gray-700 shadow-lg">
+            <hr className="border-black my-2" />
             <div className="flex items-center space-x-2 rtl:space-x-reverse">
               <span className="text-sm font-semibold text-gray-900 dark:text-white">
-                Bonnie Green
-              </span>
-              <span className="text-sm font-normal text-gray-500 dark:text-gray-400">
-                11:46
+                ContentForge
               </span>
             </div>
             <p className="text-sm font-normal py-2.5 text-gray-900 dark:text-white">
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Saepe
-              esse, impedit commodi quaerat ut et tempore obcaecati, architecto,
-              maxime dolore quos magni officiis distinctio unde in optio non
-              facilis illum doloremque. Reiciendis sequi harum autem culpa
-              repudiandae, pariatur fugit impedit ipsa cumque commodi laboriosam
-              et ad ducimus voluptatem neque. Laborum.
-            </p>
-            <span className="text-sm font-normal text-gray-500 dark:text-gray-400">
-              Received
-            </span>
-          </div>
-        </div>
-        <div className="flex gap-2.5 p-3">
-          {/* <img className="w-8 h-8 rounded-full" src="/docs/images/people/profile-picture-3.jpg" alt="Jese image"> */}
-          <div className="flex flex-col w-full leading-1.5 p-4 border-gray-200 bg-white rounded-e-xl rounded-es-xl dark:bg-gray-700 shadow-lg">
-            <div className="flex items-center space-x-2 rtl:space-x-reverse">
-              <span className="text-sm font-semibold text-gray-900 dark:text-white">
-                Bonnie Green
-              </span>
-              <span className="text-sm font-normal text-gray-500 dark:text-gray-400">
-                11:46
-              </span>
-            </div>
-            <p className="text-sm font-normal py-2.5 text-gray-900 dark:text-white">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. In beatae
-              iure dolorum facere perspiciatis, nam ab distinctio molestias
-              omnis porro exercitationem dolorem at consequuntur quis voluptatem
-              magnam quidem, ex, tenetur repellendus incidunt itaque provident?
-              Tempora explicabo quisquam, commodi in, temporibus nostrum
-              asperiores eum voluptas sapiente possimus obcaecati et
-              dignissimos? Iste rem voluptatum voluptatem laborum sunt natus,
-              possimus aut enim adipisci quaerat nesciunt nihil nobis excepturi
-              quam tempora vitae. Ab natus delectus molestiae totam voluptatem
-              illo amet veritatis recusandae fugit, eligendi accusamus
-              voluptatum neque doloribus obcaecati ullam reiciendis magnam nam
-              dolor enim error impedit. Ducimus accusamus sed explicabo esse
-              nisi. Aliquid!
+              {response}
             </p>
             <span className="text-sm font-normal text-gray-500 dark:text-gray-400">
               Received

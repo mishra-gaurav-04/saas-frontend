@@ -44,7 +44,7 @@ const Preferences = ({ toggle, setToggle }: any) => {
     setAnswers((prev) => [...prev, newAnswer]);
   };
 
-  console.log("This is answers\n", answers);
+  // console.log("This is answers\n", answers);
 
   // console.log("Prefrence\n", session?.user?.id);
 
