@@ -17,7 +17,7 @@ export const userOnboarding = async ({ userId, onBoarding }: any) => {
         return JSON.parse(JSON.stringify(user));    
     } catch (error) {
         console.error('Error during user onboarding:', error);
-        handleError(error);
+
     }
 }
 
@@ -32,7 +32,7 @@ export const checkFirstTime = async(email : String) => {
         return check;
     }
     catch(error){
-        handleError(error);
+        console.log(error);
     }
 }
 
@@ -54,6 +54,25 @@ export const postPrompt = async ({ userId, prompt }: { userId: string, prompt: a
         return null;
 
     } catch (error) {
-        handleError(error);
+        console.log(error);
+    }
+}
+
+export const getUserPrompts = async(userId:String) => {
+    try{
+        const response = await fetch(`http://127.0.0.1:5000/api/pinecone_response/${userId}`,{
+            method : 'GET',
+            headers : {
+                'Content-Type' : 'application/json'
+            }
+        })
+
+        if(response?.ok){
+            return await response.json();
+        }
+        return null
+    }
+    catch(error){
+        console.log(error);
     }
 }

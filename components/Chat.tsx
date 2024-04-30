@@ -6,8 +6,8 @@ import { MdSend } from "react-icons/md";
 import { HiOutlineMenu } from "react-icons/hi";
 import { useSession } from "next-auth/react";
 import { useState } from "react";
-import { postPrompt } from "@/lib/actions/user.action";
-import { preconnect } from "next/dist/server/app-render/entry-base";
+import { postPrompt,getUserPrompts } from "@/lib/actions/user.action";
+
 
 const Chat = ({ toggle, setToggle }: any) => {
   const { data: session, status } = useSession();
@@ -29,7 +29,9 @@ const Chat = ({ toggle, setToggle }: any) => {
     e.preventDefault();
     try {
       const res = await postPrompt({ userId, prompt });
+      const prompts = await getUserPrompts(userId);
       console.log(res);
+      console.log(prompts);
       setResponse(res);
       setQuery(temp);
     } catch (error) {
