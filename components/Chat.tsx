@@ -41,8 +41,8 @@ const Chat = ({ toggle, setToggle }: any) => {
 
   return (
     <>
-      <div className="h-screen w-full md:w-2/3 bg-gray-100">
-        <div className="flex justify-between items-center w-full bg-white h-[52px]">
+      <div className="h-screen w-full md:w-2/3 bg-zinc-800">
+        <div className="flex justify-between items-center w-full bg-zinc-900 h-[52px]">
           <div className="ml-4 flex gap-2 items-center">
             <HiOutlineMenu
               className="text-2xl md:hidden block"
@@ -58,39 +58,39 @@ const Chat = ({ toggle, setToggle }: any) => {
               className="rounded-full"
             />
             <div>
-              <p className="text-md">{session?.user?.name}</p>
+              <p className="text-md text-white">{session?.user?.name}</p>
               <p className="text-sm text-gray-500">{session?.user?.email}</p>
             </div>
           </div>
-          <button className="hidden md:block mr-2 border text-sm border-[#6656FF] py-2 px-4 rounded-3xl hover:bg-[#6656FF] hover:text-white">
+          <button className="hidden md:block mr-2 text-sm text-white bg-zinc-600 py-2 px-4 rounded-3xl hover:bg-zinc-700">
             Invite Friends
           </button>
         </div>
 
         <div className="flex gap-2.5 p-3 ">
           {/* <img className="w-8 h-8 rounded-full" src="/docs/images/people/profile-picture-3.jpg" alt="Jese image"> */}
-          <div className="flex flex-col w-full leading-1.5 p-4 border-4 border-[#877af8] bg-white rounded-e-xl rounded-es-xl dark:bg-gray-700 shadow-xl">
+          <div className="flex flex-col w-full leading-1.5 p-4 bg-zinc-700 rounded-e-xl rounded-es-xl dark:bg-gray-700 shadow-xl">
             <div className="flex items-center space-x-2 rtl:space-x-reverse">
-              <span className="text-sm font-semibold text-gray-900 dark:text-white">
+              <span className="text-sm font-semibold text-white dark:text-white">
                 {session?.user?.name}
               </span>
             </div>
-            <p className="text-sm font-normal py-2.5 text-gray-900 dark:text-white">
+            <p className="text-sm font-normal py-2.5 text-white dark:text-white">
               {query}
             </p>
-            <span className="text-sm font-normal text-gray-500 dark:text-gray-400">
+            <span className="text-sm font-normal text-gray-400 dark:text-gray-400">
               Delivered
             </span>
-            <hr className="border-black my-2" />
+            <hr className="border-white my-2" />
             <div className="flex items-center space-x-2 rtl:space-x-reverse">
-              <span className="text-sm font-semibold text-gray-900 dark:text-white">
+              <span className="text-sm font-semibold text-white dark:text-white">
                 ContentForge
               </span>
             </div>
-            <p className="text-sm font-normal py-2.5 text-gray-900 dark:text-white">
+            <p className="text-sm font-normal py-2.5 text-white dark:text-white">
               {response}
             </p>
-            <span className="text-sm font-normal text-gray-500 dark:text-gray-400">
+            <span className="text-sm font-normal text-gray-400 dark:text-gray-400">
               Received
             </span>
           </div>
@@ -105,7 +105,7 @@ const Chat = ({ toggle, setToggle }: any) => {
           </label>
           <div className="relative">
             <div className="absolute inset-y-0 -start-1 flex items-center ps-3 hover:cursor-pointer">
-              <IoAddCircleSharp className="text-3xl text-[#4b3ebe] " />
+              <IoAddCircleSharp className="text-3xl text-black " />
             </div>
             <input
               type="text"
@@ -118,7 +118,7 @@ const Chat = ({ toggle, setToggle }: any) => {
             />
             <button
               type="submit"
-              className="text-white absolute end-2.5 bottom-3 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+              className="text-white absolute end-2.5 bottom-3 bg-black hover:bg-zinc-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
             >
               <MdSend />
             </button>

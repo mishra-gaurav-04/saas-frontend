@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ["history-computer.com"],
+    domains: ["t3.ftcdn.net"],
   },
 };
 
