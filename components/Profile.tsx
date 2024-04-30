@@ -1,10 +1,30 @@
+'use client'
 import React from "react";
 import { FaSearch } from "react-icons/fa";
 import Image from "next/image";
 import { useSession } from "next-auth/react";
+import {getUserPrompts} from '@/lib/actions/user.action';
+import {useEffect,useState} from 'react';
 
 const Profile = () => {
   const { data: session, status } = useSession();
+  const userId = session?.user?.id;
+  const [prompts,setPrompts] = useState([]);
+
+
+  useEffect(() => {
+    const fetchPrompts = async() => {
+      try{
+        const res = await getUserPrompts(userId);
+        setPrompts(res);
+      }
+      catch(error){
+        console.log(error);
+      }
+    }
+    fetchPrompts();
+  },[])
+  console.log('These are prompts for the profile\n',prompts);
   return (
     <>
       <div className="top-0 h-screen w-full bg-black p-4 border-black ">

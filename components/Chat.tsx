@@ -17,7 +17,19 @@ const Chat = ({ toggle, setToggle }: any) => {
   const [prompts, setPrompts] = useState([]);
   const userId = session?.user?.id;
 
-  
+  useEffect(()=>{
+    const fetchPrompts = async() => {
+      try{
+        const res = await getUserPrompts(userId);
+        console.log(res);
+        setPrompts(res);
+      }
+      catch(error){
+        console.log(error);
+      }
+    }
+    fetchPrompts()
+  },[])
 
   const handleInputChange = (e: any) => {
     setPrompt((prev) => ({
