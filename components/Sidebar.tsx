@@ -54,7 +54,7 @@ const Sidebar = () => {
               >
                 <BiSolidLogIn className="text-2xl text-white" />
                 <span className="flex-1 ms-3 whitespace-nowrap text-white">
-                  OnBoard
+                  Profile
                 </span>
               </a>
             </li>

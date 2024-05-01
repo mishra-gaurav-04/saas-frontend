@@ -58,7 +58,7 @@ const Chat = ({ toggle, setToggle }: any) => {
   return (
     <>
       <div className="h-screen w-full md:w-2/3 bg-zinc-800 overflow-y-scroll">
-        <div className="flex justify-between items-center w-full bg-zinc-900 h-[52px]">
+        <div className="flex justify-between items-center w-full bg-zinc-900 h-[52px] fixed top-0">
           <div className="ml-4 flex gap-2 items-center">
             <HiOutlineMenu
               className="text-2xl md:hidden block"
@@ -83,7 +83,7 @@ const Chat = ({ toggle, setToggle }: any) => {
           </button>
         </div>
 
-        <div className="flex gap-2.5 p-3">
+        <div className="flex gap-2.5 p-3 pb-24 pt-16">
           {/* <img className="w-8 h-8 rounded-full" src="/docs/images/people/profile-picture-3.jpg" alt="Jese image"> */}
 
           <div className="flex flex-col w-full gap-y-6">
@@ -116,8 +116,7 @@ const Chat = ({ toggle, setToggle }: any) => {
             ))}
           </div>
         </div>
-
-        <form onSubmit={handleSubmit} className="fixed bottom-0 w-[65%] m-4">
+        <form onSubmit={handleSubmit} className="fixed bottom-0 w-[64%] m-4">
           <label
             form="submit"
             className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white"
