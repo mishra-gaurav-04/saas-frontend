@@ -4,11 +4,28 @@ import Image from "next/image";
 import { useState, useEffect } from "react";
 import { HiOutlineMenu } from "react-icons/hi";
 import { useSession } from "next-auth/react";
+import { getUserPrompts } from "@/lib/actions/user.action";
 
 const Hero = ({ toggle, setToggle }: any) => {
   // console.log(window.innerWidth);
   const [windowWidth, setWindowWidth] = useState(0);
   const { data: session, status } = useSession();
+  const userId = session?.user?.id;
+  const [prompts, setPrompts] = useState([]);
+
+  useEffect(() => {
+    const fetchPrompts = async () => {
+      try {
+        const res = await getUserPrompts(userId);
+        setPrompts(res);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchPrompts();
+  }, []);
+
+  console.log("These are prompts for the profile\n", prompts);
 
   useEffect(() => {
     const handleResize = () => {
@@ -53,7 +70,7 @@ const Hero = ({ toggle, setToggle }: any) => {
           <span className="text-slate-400">ples</span>
         </p>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 m-4">
-          {Array.from({ length: windowWidth < 768 ? 2 : 6 }, (_, index) => (
+          {prompts.slice(0, 6).map((prompt, index) => (
             <div
               key={index}
               className="flex flex-col items-center rounded-xl bg-zinc-600 shadow-lg overflow-hidden hover:shadow-2xl hover:-translate-y-2 delay-150 duration-200 mb-4"
@@ -73,8 +90,7 @@ const Hero = ({ toggle, setToggle }: any) => {
                 </h3>
                 <div className="w-full">
                   <p className="text-sm mt-1 text-gray-300">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Adipisci, facilis.
+                    {prompt?.response}
                   </p>
                 </div>
                 <div className="flex justify-between w-full gap-2">
