@@ -10,9 +10,9 @@ const Hero = ({ toggle, setToggle }: any) => {
   // console.log(window.innerWidth);
   const [windowWidth, setWindowWidth] = useState(0);
   const { data: session, status } = useSession();
-  const userId = session?.user?.id;
+  const userId = "662c020e9d5521cc04f4b9f9";
   const [prompts, setPrompts] = useState([]);
-
+  
   useEffect(() => {
     const fetchPrompts = async () => {
       try {
@@ -70,7 +70,7 @@ const Hero = ({ toggle, setToggle }: any) => {
           <span className="text-slate-400">ples</span>
         </p>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 m-4">
-          {prompts.slice(0, 6).map((prompt, index) => (
+          {prompts?.slice(0, 6).map((prompt, index) => (
             <div
               key={index}
               className="flex flex-col items-center rounded-xl bg-zinc-600 shadow-lg overflow-hidden hover:shadow-2xl hover:-translate-y-2 delay-150 duration-200 mb-4"

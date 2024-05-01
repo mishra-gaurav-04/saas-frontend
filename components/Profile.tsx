@@ -64,7 +64,7 @@ const Profile = () => {
         </div>
         <div className="mt-4 space-y-3 max-h-screen">
           <p className="text-xl font-semibold text-white mb-2">My Posts</p>
-          {prompts.slice(0, 2).map((prompt, index) => (
+          {prompts?.slice(0, 2).map((prompt, index) => (
             <div className="bg-zinc-900 border border-zinc-900 hover:bg-zinc-700 hover:border-zinc-700 p-2 rounded-lg cursor-pointer">
               <p className="text-white font-semibold text-lg">
                 Post {index + 1}

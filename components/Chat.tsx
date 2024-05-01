@@ -17,19 +17,18 @@ const Chat = ({ toggle, setToggle }: any) => {
   const [prompts, setPrompts] = useState([]);
   const userId = session?.user?.id;
 
-  useEffect(()=>{
-    const fetchPrompts = async() => {
-      try{
+  useEffect(() => {
+    const fetchPrompts = async () => {
+      try {
         const res = await getUserPrompts(userId);
         console.log(res);
         setPrompts(res);
-      }
-      catch(error){
+      } catch (error) {
         console.log(error);
       }
-    }
-    fetchPrompts()
-  },[])
+    };
+    fetchPrompts();
+  }, []);
 
   const handleInputChange = (e: any) => {
     setPrompt((prev) => ({
@@ -88,7 +87,7 @@ const Chat = ({ toggle, setToggle }: any) => {
           {/* <img className="w-8 h-8 rounded-full" src="/docs/images/people/profile-picture-3.jpg" alt="Jese image"> */}
 
           <div className="flex flex-col w-full gap-y-6">
-            {prompts.map((signal, index) => (
+            {prompts?.map((signal, index) => (
               <div className="flex flex-col w-full leading-1.5 p-4 bg-zinc-700 rounded-e-xl rounded-es-xl dark:bg-gray-700 shadow-xl">
                 <div className="flex items-center space-x-2 rtl:space-x-reverse">
                   <span className="text-sm font-semibold text-white dark:text-white">
