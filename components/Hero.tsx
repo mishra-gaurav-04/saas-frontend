@@ -12,7 +12,7 @@ const Hero = ({ toggle, setToggle }: any) => {
   const { data: session, status } = useSession();
   const userId = "662c020e9d5521cc04f4b9f9";
   const [prompts, setPrompts] = useState([]);
-  
+
   useEffect(() => {
     const fetchPrompts = async () => {
       try {
@@ -98,7 +98,7 @@ const Hero = ({ toggle, setToggle }: any) => {
                     15th feb
                   </p>
                   <p className="text-sm mt-1 text-gray-400 justify-end">
-                    {session?.user?.name}
+                    Prateek
                   </p>
                 </div>
               </div>

@@ -85,8 +85,7 @@ const OnBoard = ({ toggle, setToggle }: any) => {
                   required
                 />
                 <label className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-black peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
-                  {onBoardingData?.firstName ? onBoardingData?.firstName : "First Name"}
-                </label>
+                  {"First Name: " + (onBoardingData?.firstName ? onBoardingData?.firstName : "")}                </label>
               </div>
               <div className="relative z-0 w-full mb-5 group">
                 <input
@@ -99,7 +98,7 @@ const OnBoard = ({ toggle, setToggle }: any) => {
                   required
                 />
                 <label className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-black peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
-                {onBoardingData?.lastName ? onBoardingData?.lastName : "last Name"}
+                {"last Name: " + (onBoardingData?.lastName ? onBoardingData?.lastName : "")}
                 </label>
               </div>
             </div>
@@ -115,7 +114,7 @@ const OnBoard = ({ toggle, setToggle }: any) => {
                   required
                 />
                 <label className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-black peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
-                  {onBoardingData?.mobileNo ? onBoardingData?.mobileNo :"Phone number (123-456-7890)"}
+                  {"Phone number (123-456-7890): " + (onBoardingData?.mobileNo ? onBoardingData?.mobileNo :"")}
                 </label>
               </div>
               <div className="relative z-0 w-full mb-5 group">
@@ -129,7 +128,7 @@ const OnBoard = ({ toggle, setToggle }: any) => {
                   required
                 />
                 <label className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-black peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
-                  {onBoardingData?.company ? onBoardingData?.company :"Company (Ex. Google)"}
+                  {"Company (Ex. Google): " + (onBoardingData?.company ? onBoardingData?.company :"")}
                 </label>
               </div>
             </div>
@@ -143,7 +142,7 @@ const OnBoard = ({ toggle, setToggle }: any) => {
                 required
               />
               <label className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-black peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
-                {onBoardingData?.linkedIn ? onBoardingData?.linkedIn: "LinkedIn Profile"}
+                {"LinkedIn Profile: "+(onBoardingData?.linkedIn ? onBoardingData?.linkedIn: "")}
               </label>
             </div>
             <div className="relative z-0 w-full mb-5 group">
@@ -156,7 +155,7 @@ const OnBoard = ({ toggle, setToggle }: any) => {
                 required
               />
               <label className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-black peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
-                {onBoardingData?.mediumAccount ? onBoardingData?.mediumAccount:"Medium Account"}
+                {"Medium Account: "+(onBoardingData?.mediumAccount ? onBoardingData?.mediumAccount:"")}
               </label>
             </div>
             <div className="relative z-0 w-full mb-5 group">
@@ -169,7 +168,7 @@ const OnBoard = ({ toggle, setToggle }: any) => {
                 required
               />
               <label className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-black peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
-                {onBoardingData?.twitter ? onBoardingData?.twitter:"Twitter"}
+                {"Twitter: "+(onBoardingData?.twitter ? onBoardingData?.twitter:"")}
               </label>
             </div>
             <div className="relative z-0 w-full mb-5 group">
@@ -182,7 +181,7 @@ const OnBoard = ({ toggle, setToggle }: any) => {
                 required
               />
               <label className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-black peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
-                {onBoardingData?.techStack ? onBoardingData?.techStack:"Technologies you use"}
+                {"Technologies you use: "+(onBoardingData?.techStack ? onBoardingData?.techStack:"")}
               </label>
             </div>
             <div className="relative z-0 w-full mb-5 group">
@@ -195,7 +194,7 @@ const OnBoard = ({ toggle, setToggle }: any) => {
                 required
               />
               <label className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-black peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
-                {onBoardingData?.entrepreneurialJourney ? onBoardingData?.entrepreneurialJourney:"Describe your Entrepreneurial Journey"}
+                {"Describe your Entrepreneurial Journey: "+(onBoardingData?.entrepreneurialJourney ? onBoardingData?.entrepreneurialJourney:"")}
               </label>
             </div>
             <div className="relative z-0 w-full mb-5 group">
@@ -208,7 +207,7 @@ const OnBoard = ({ toggle, setToggle }: any) => {
                 required
               />
               <label className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-black peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
-               {onBoardingData?.productDescription ? onBoardingData?.productDescription : "Product Description"}
+               {"Product Description: "+(onBoardingData?.productDescription ? onBoardingData?.productDescription : "")}
               </label>
             </div>
 
