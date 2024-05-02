@@ -76,3 +76,15 @@ export const getUserPrompts = async(userId:String) => {
         console.log(error);
     }
 }
+
+export const getOnboardData = async(userId:String) => {
+    try{
+        await connectToDatabase();
+        const response = await User.findById(userId);
+        // console.log('Response data',response);
+        return response.onboarding;
+    }
+    catch(error){
+        console.log(error);
+    }
+}

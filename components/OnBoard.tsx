@@ -1,8 +1,10 @@
+'use client';
 import React from "react";
 import Image from "next/image";
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import { HiOutlineMenu } from "react-icons/hi";
 import { useSession } from "next-auth/react";
+import {getOnboardData} from '@/lib/actions/user.action';
 import { userOnboarding } from "@/lib/actions/user.action";
 
 const OnBoard = ({ toggle, setToggle }: any) => {
@@ -11,10 +13,7 @@ const OnBoard = ({ toggle, setToggle }: any) => {
   const userId = session?.user?.id;
   console.log("userId", userId);
   const handleInputChange = (e: any) => {
-    setOnBoardingData((prev) => ({
-      ...prev,
-      [e.target.name]: e.target.value,
-    }));
+    setOnBoardingData({...onBoardingData,[e.target.name]:e.target.value})
   };
   const handleSubmit = async (e: any) => {
     e.preventDefault();
@@ -29,6 +28,18 @@ const OnBoard = ({ toggle, setToggle }: any) => {
       console.log(error);
     }
   };
+  useEffect(()=>{
+    const fetchOnboardingData = async() => {
+      try{
+        const response = await getOnboardData(userId);
+        setOnBoardingData(response);
+      }
+      catch(error){
+        console.log(error);
+      }
+    }
+    fetchOnboardingData();
+  },[]);
   console.log("Onboarding", onBoardingData);
   return (
     <>
@@ -74,7 +85,7 @@ const OnBoard = ({ toggle, setToggle }: any) => {
                   required
                 />
                 <label className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-black peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
-                  First name
+                  {onBoardingData?.firstName ? onBoardingData?.firstName : "First Name"}
                 </label>
               </div>
               <div className="relative z-0 w-full mb-5 group">
@@ -88,7 +99,7 @@ const OnBoard = ({ toggle, setToggle }: any) => {
                   required
                 />
                 <label className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-black peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
-                  Last name
+                {onBoardingData?.lastName ? onBoardingData?.lastName : "last Name"}
                 </label>
               </div>
             </div>
@@ -104,7 +115,7 @@ const OnBoard = ({ toggle, setToggle }: any) => {
                   required
                 />
                 <label className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-black peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
-                  Phone number (123-456-7890)
+                  {onBoardingData?.mobileNo ? onBoardingData?.mobileNo :"Phone number (123-456-7890)"}
                 </label>
               </div>
               <div className="relative z-0 w-full mb-5 group">
@@ -118,7 +129,7 @@ const OnBoard = ({ toggle, setToggle }: any) => {
                   required
                 />
                 <label className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-black peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
-                  Company (Ex. Google)
+                  {onBoardingData?.company ? onBoardingData?.company :"Company (Ex. Google)"}
                 </label>
               </div>
             </div>
@@ -132,7 +143,7 @@ const OnBoard = ({ toggle, setToggle }: any) => {
                 required
               />
               <label className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-black peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
-                LinkedIn Profile
+                {onBoardingData?.linkedIn ? onBoardingData?.linkedIn: "LinkedIn Profile"}
               </label>
             </div>
             <div className="relative z-0 w-full mb-5 group">
@@ -145,7 +156,7 @@ const OnBoard = ({ toggle, setToggle }: any) => {
                 required
               />
               <label className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-black peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
-                Medium Account
+                {onBoardingData?.mediumAccount ? onBoardingData?.mediumAccount:"Medium Account"}
               </label>
             </div>
             <div className="relative z-0 w-full mb-5 group">
@@ -158,7 +169,7 @@ const OnBoard = ({ toggle, setToggle }: any) => {
                 required
               />
               <label className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-black peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
-                Twitter
+                {onBoardingData?.twitter ? onBoardingData?.twitter:"Twitter"}
               </label>
             </div>
             <div className="relative z-0 w-full mb-5 group">
@@ -171,7 +182,7 @@ const OnBoard = ({ toggle, setToggle }: any) => {
                 required
               />
               <label className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-black peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
-                Technologies you use
+                {onBoardingData?.techStack ? onBoardingData?.techStack:"Technologies you use"}
               </label>
             </div>
             <div className="relative z-0 w-full mb-5 group">
@@ -184,7 +195,7 @@ const OnBoard = ({ toggle, setToggle }: any) => {
                 required
               />
               <label className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-black peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
-                Describe your Entrepreneurial Journey
+                {onBoardingData?.entrepreneurialJourney ? onBoardingData?.entrepreneurialJourney:"Describe your Entrepreneurial Journey"}
               </label>
             </div>
             <div className="relative z-0 w-full mb-5 group">
@@ -197,7 +208,7 @@ const OnBoard = ({ toggle, setToggle }: any) => {
                 required
               />
               <label className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-black peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
-                Product Description
+               {onBoardingData?.productDescription ? onBoardingData?.productDescription : "Product Description"}
               </label>
             </div>
 
@@ -205,7 +216,7 @@ const OnBoard = ({ toggle, setToggle }: any) => {
               type="submit"
               className="text-white bg-black hover:bg-zinc-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
             >
-              Launch
+              {onBoardingData?.firstName?"Edit":"Launch"}
             </button>
           </form>
         </div>
